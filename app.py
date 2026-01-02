@@ -291,8 +291,7 @@ def build_graph_from_kegg(selected_pathways, full_df, pleiotropy_threshold):
 # =====================================================
 
 
-st.title("Systems Biology Platform - Standalone Edition")
-st.markdown("### Pure KEGG API | No Database Required | Real-Time Analysis")
+st.title(" Systems Biology Platform - Standalone Edition")
 
 # =====================================================
 # SIDEBAR CONTROLS
@@ -561,7 +560,7 @@ if analysis_mode == "Pathway-Centric":
                     f" Found {len(genes_in_target)} genes in pathway {selected_pathway_id}")
 
                 for n in range(max_other_pathways + 1):
-                    with st.expander(f"🧬 Genes in target pathway + {n} other pathway(s) ({len(result_dict.get(n, []))} genes)"):
+                    with st.expander(f" Genes in target pathway + {n} other pathway(s) ({len(result_dict.get(n, []))} genes)"):
                         genes = result_dict.get(n, [])
 
                         if genes:
@@ -670,29 +669,29 @@ if analysis_mode == "Pathway-Centric":
         if pathway_mode == "Multiple Pathways (Comparison)":
             cols = st.columns(5)
             with cols[0]:
-                st.markdown("🟠 **Pathway**")
+                st.markdown(" **Pathway**")
             with cols[1]:
-                st.markdown("🟢 **Gene (specific)**")
+                st.markdown(" **Gene (specific)**")
             with cols[2]:
-                st.markdown("🟣 **Shared Gene**")
+                st.markdown(" **Shared Gene**")
             with cols[3]:
-                st.markdown(f"🔴 **Pleiotropic (≥{pleiotropy_threshold})**")
+                st.markdown(f" **Pleiotropic (≥{pleiotropy_threshold})**")
             with cols[4]:
-                st.markdown("➖ **Pathway Link**")
+                st.markdown(" **Pathway Link**")
 
             st.info(
-                f"💡 **Node Size**: {'Proportional to pathway count' if use_proportional_sizing else 'Fixed size'}")
+                f" **Node Size**: {'Proportional to pathway count' if use_proportional_sizing else 'Fixed size'}")
         else:
             cols = st.columns(3)
             with cols[0]:
-                st.markdown("🟠 **Pathway**")
+                st.markdown(" **Pathway**")
             with cols[1]:
-                st.markdown("🟢 **Gene (specific)**")
+                st.markdown(" **Gene (specific)**")
             with cols[2]:
-                st.markdown(f"🔴 **Pleiotropic (≥{pleiotropy_threshold})**")
+                st.markdown(f" **Pleiotropic (≥{pleiotropy_threshold})**")
 
             st.info(
-                f"💡 **Node Size**: {'Proportional to pathway count' if use_proportional_sizing else 'Fixed size'}")
+                f" **Node Size**: {'Proportional to pathway count' if use_proportional_sizing else 'Fixed size'}")
 
         col1, col2 = st.columns(2)
         with col1:
@@ -890,13 +889,13 @@ else:  # Gene-Centric mode
 
         if pathway_count == 1:
             st.info(
-                f"🟢 **Pathway-Specific Gene**: {selected_gene_id} is specific to one pathway")
+                f" **Pathway-Specific Gene**: {selected_gene_id} is specific to one pathway")
         elif pathway_count < pleiotropy_threshold:
             st.warning(
                 f"🟡 **Multi-Pathway Gene**: {selected_gene_id} participates in {pathway_count} pathways")
         else:
             st.error(
-                f"🔴 **Pleiotropic Hub Gene**: {selected_gene_id} is involved in {pathway_count} pathways (≥ threshold)")
+                f" **Pleiotropic Hub Gene**: {selected_gene_id} is involved in {pathway_count} pathways (≥ threshold)")
 
         # Download option
         st.download_button(
@@ -980,13 +979,13 @@ else:  # Gene-Centric mode
         st.markdown("###  Legend")
         cols = st.columns(4)
         with cols[0]:
-            st.markdown("🟠 **Pathway**")
+            st.markdown(" **Pathway**")
         with cols[1]:
-            st.markdown("💗 **Selected Gene**")
+            st.markdown(" **Selected Gene**")
         with cols[2]:
-            st.markdown("🟢 **Co-pathway Gene**")
+            st.markdown(" **Co-pathway Gene**")
         with cols[3]:
-            st.markdown(f"🔴 **Pleiotropic (≥{pleiotropy_threshold})**")
+            st.markdown(f" **Pleiotropic (≥{pleiotropy_threshold})**")
 
         col1, col2 = st.columns(2)
         with col1:
@@ -1041,10 +1040,44 @@ else:  # Gene-Centric mode
 # =====================================================
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("** Systems Biology Platform v2.0**")
-st.sidebar.markdown("Standalone | Pure KEGG API | Real-Time")
+st.sidebar.markdown("**Systems Biology Platform v1.0**")
 
 if st.sidebar.button(" Reset All"):
     for key in list(st.session_state.keys()):
         del st.session_state[key]
     st.rerun()
+
+# =====================================================
+# FIXED FOOTER (ALWAYS VISIBLE)
+# =====================================================
+st.markdown("""
+<style>
+.main {
+    padding-bottom: 80px;
+}
+#fixed-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.05);
+    padding: 8px;
+    font-size: 14px;
+    z-index: 100;
+}
+</style>
+
+<div id="fixed-footer">
+    <p style="text-align:center;">
+        <strong>Systems Biology Platform</strong> · Version 1.0 · © 2025 &nbsp;|&nbsp;
+        <a href="https://scholar.google.com/citations?user=Es-kJk4AAAAJ&hl=en" target="_blank">
+            Dr. Sandip Garai
+        </a> ·
+        <a href="https://scholar.google.com/citations?user=0dQ7Sf8AAAAJ&hl=en&oi=ao" target="_blank">
+            Dr. Kanaka K K
+        </a>        
+        &nbsp;|&nbsp;
+        <a href="mailto:drgaraislab@gmail.com">Contact</a>
+    </p>
+</div>
+""", unsafe_allow_html=True)
