@@ -669,26 +669,26 @@ if analysis_mode == "Pathway-Centric":
         if pathway_mode == "Multiple Pathways (Comparison)":
             cols = st.columns(5)
             with cols[0]:
-                st.markdown(" **Pathway**")
+                st.markdown("🟠 **Pathway**")
             with cols[1]:
-                st.markdown(" **Gene (specific)**")
+                st.markdown("🟢 **Gene (specific)**")
             with cols[2]:
-                st.markdown(" **Shared Gene**")
+                st.markdown("🟣 **Shared Gene**")
             with cols[3]:
-                st.markdown(f" **Pleiotropic (≥{pleiotropy_threshold})**")
+                st.markdown(f"🔴 **Pleiotropic (≥{pleiotropy_threshold})**")
             with cols[4]:
-                st.markdown(" **Pathway Link**")
+                st.markdown("➖ **Pathway Link**")
 
             st.info(
                 f" **Node Size**: {'Proportional to pathway count' if use_proportional_sizing else 'Fixed size'}")
         else:
             cols = st.columns(3)
             with cols[0]:
-                st.markdown(" **Pathway**")
+                st.markdown("🟠 **Pathway**")
             with cols[1]:
-                st.markdown(" **Gene (specific)**")
+                st.markdown("🟢 **Gene (specific)**")
             with cols[2]:
-                st.markdown(f" **Pleiotropic (≥{pleiotropy_threshold})**")
+                st.markdown(f"🔴 **Pleiotropic (≥{pleiotropy_threshold})**")
 
             st.info(
                 f" **Node Size**: {'Proportional to pathway count' if use_proportional_sizing else 'Fixed size'}")
@@ -889,13 +889,13 @@ else:  # Gene-Centric mode
 
         if pathway_count == 1:
             st.info(
-                f" **Pathway-Specific Gene**: {selected_gene_id} is specific to one pathway")
+                f"🟢 **Pathway-Specific Gene**: {selected_gene_id} is specific to one pathway")
         elif pathway_count < pleiotropy_threshold:
             st.warning(
                 f"🟡 **Multi-Pathway Gene**: {selected_gene_id} participates in {pathway_count} pathways")
         else:
             st.error(
-                f" **Pleiotropic Hub Gene**: {selected_gene_id} is involved in {pathway_count} pathways (≥ threshold)")
+                f"🔴 **Pleiotropic Hub Gene**: {selected_gene_id} is involved in {pathway_count} pathways (≥ threshold)")
 
         # Download option
         st.download_button(
@@ -979,13 +979,13 @@ else:  # Gene-Centric mode
         st.markdown("###  Legend")
         cols = st.columns(4)
         with cols[0]:
-            st.markdown(" **Pathway**")
+            st.markdown("🟠 **Pathway**")
         with cols[1]:
-            st.markdown(" **Selected Gene**")
+            st.markdown("💗 **Selected Gene**")
         with cols[2]:
-            st.markdown(" **Co-pathway Gene**")
+            st.markdown("🟢 **Co-pathway Gene**")
         with cols[3]:
-            st.markdown(f" **Pleiotropic (≥{pleiotropy_threshold})**")
+            st.markdown(f"🔴 **Pleiotropic (≥{pleiotropy_threshold})**")
 
         col1, col2 = st.columns(2)
         with col1:
